@@ -1,31 +1,41 @@
-const { Core } = require('@walletconnect/core');
-const { Web3Wallet } = require('@walletconnect/web3wallet');
+// Import WalletConnect modules
+import { Core } from './node_modules/@walletconnect/core/dist/index.esm.min.js';
+import { Web3Wallet } from './node_modules/@walletconnect/web3wallet/dist/index.esm.min.js';
 
+// Create Core instance
 const core = new Core({
   projectId: 'a5b621fc19ef15b1e20a49ba690ef180'
-})
+});
 
+// Define metadata
 const metadata = {
   name: 'soldra',
   description: 'AppKit Example',
-  url: 'https://soldra.vercel.app/', // origin must match your domain & subdomain
+  url: 'https://soldra.vercel.app/',
   icons: ['https://avatars.githubusercontent.com/u/37784886']
-}
+};
 
-const web3wallet = await Web3Wallet.init({
-  core, // <- pass the shared 'core' instance
+// Initialize Web3Wallet
+let web3wallet;
+
+Web3Wallet.init({
+  core, // pass the shared 'core' instance
   metadata
-})
+}).then(instance => {
+  web3wallet = instance;
 
-const connectButton = document.getElementById('connectButton'); // Replace with your actual button ID
-
-connectButton.addEventListener('click', async () => {
-  try {
-    const session = await web3wallet.connect();
-    console.log('Connected:', session);
-    // Handle connected session
-  } catch (error) {
-    console.error('Connection error:', error);
-    // Handle connection error
-  }
+  // Add event listener to connect button
+  const connectButton = document.getElementById('connectButton');
+  connectButton.addEventListener('click', async () => {
+    try {
+      const session = await web3wallet.connect();
+      console.log('Connected:', session);
+      // Handle connected session
+    } catch (error) {
+      console.error('Connection error:', error);
+      // Handle connection error
+    }
+  });
+}).catch(error => {
+  console.error('Initialization error:', error);
 });
