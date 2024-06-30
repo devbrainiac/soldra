@@ -1,4 +1,3 @@
-const { createWeb3Modal, defaultSolanaConfig } = window.Web3Modal.solana;
 
     // 0. Setup chains
     const solana = {
