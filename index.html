@@ -3,26 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web3Auth Solana Demo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Solana Wallet Connect</title>
 </head>
 <body>
-    <button id="loginButton">Login with Web3Auth</button>
-    <button id="fetchPrivateKeyButton">Fetch Private Key</button>
-    <button id="getUserInfoButton">Get User Info</button>
-    <button id="authenticateUserButton">Authenticate User</button>
-    <button id="parseTokenButton">Parse Token</button>
-    <button id="logoutButton">Logout</button>
-    <button id="getAccountsButton">Get Accounts</button>
-    <button id="getBalanceButton">Get Balance</button>
-    <button id="signTransactionButton">Sign Transaction</button>
-    <button id="signAllTransactionsButton">Sign All Transactions</button>
-    <button id="signAndSendTransactionButton">Sign and Send Transaction</button>
-    <button id="signMessageButton">Sign Message</button>
-    <button id="signSolanaMessageButton">Sign Solana Message</button>
-    <script src="https://cdn.jsdelivr.net/npm/@web3auth/web3auth@latest/dist/web3auth.umd.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@solana/web3.js@latest/dist/web3.min.js"></script>
-    <script src="app.js"></script>
+    <button id="connectWallet">Connect Wallet</button>
+    <p id="walletAddress">Wallet Address: Not Connected</p>
+    <p id="walletBalance">Wallet Balance: N/A</p>
+
+    <!-- Include Solana Web3.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/solana-web3/1.30.0/web3.min.js"></script>
+    <!-- Include Web3Modal library -->
+    <script src="https://unpkg.com/web3modal"></script>
+
+    <script>
+        // JavaScript code will go here
+    </script>
 </body>
 </html>
-
