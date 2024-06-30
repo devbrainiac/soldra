@@ -1,6 +1,5 @@
-
-import { Core } from '@walletconnect/core'
-import { Web3Wallet } from '@walletconnect/web3wallet'
+const { Core } = require('@walletconnect/core');
+const { Web3Wallet } = require('@walletconnect/web3wallet');
 
 const core = new Core({
   projectId: 'a5b621fc19ef15b1e20a49ba690ef180'
