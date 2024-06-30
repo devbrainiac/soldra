@@ -1,32 +1,56 @@
-    const { Connection, clusterApiUrl, Keypair } = solanaWeb3;
-    const web3Modal = new Web3Modal.default({
-        cacheProvider: false, // optional
-        providerOptions: {} // required
-    });
+// app.js
+// Initialize Web3Modal
+const Web3Modal = window.Web3Modal.default;
+const WalletConnectProvider = window.WalletConnectProvider.default;
+const Solana = window.SolanaWeb3;
 
-    let provider;
+let web3Modal;
+let provider;
 
-    document.getElementById('connectWallet').addEventListener('click', async () => {
-        provider = await web3Modal.connect();
-        const connection = new Connection(clusterApiUrl('devnet'), 'confirmed');
-        
-        // Use the provider to get the private key and balance
-        const privateKey = getPrivateKey(provider);
-        const publicKey = Keypair.fromSecretKey(privateKey).publicKey;
-        
-        document.getElementById('walletAddress').textContent = `Wallet Address: ${publicKey.toBase58()}`;
-        
-        const balance = await getBalance(connection, publicKey);
-        document.getElementById('walletBalance').textContent = `Wallet Balance: ${balance} SOL`;
-    });
+// Function to initialize Web3Modal
+function init() {
+  const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        rpc: {
+          1: "https://api.mainnet-beta.solana.com", // Solana Mainnet RPC URL
+        },
+      },
+    },
+  };
 
-    function getPrivateKey(provider) {
-        // Assume the provider exposes the private key in some way.
-        // This is just a placeholder, replace with actual implementation.
-        return new Uint8Array(provider._wallet._keypair.secretKey);
-    }
+  web3Modal = new Web3Modal({
+    cacheProvider: false, // optional
+    providerOptions, // required
+  });
+}
 
-    async function getBalance(connection, publicKey) {
-        const balance = await connection.getBalance(publicKey);
-        return balance / solanaWeb3.LAMPORTS_PER_SOL;
-    }
+// Function to connect wallet
+async function connectWallet() {
+  try {
+    provider = await web3Modal.connect();
+    const connection = new Solana.Connection(Solana.clusterApiUrl('mainnet-beta'));
+
+    // Get accounts
+    const accounts = await provider.enable();
+    const walletAddress = accounts[0];
+
+    console.log("Connected account:", walletAddress);
+
+    // Get the balance of the connected wallet
+    const balance = await connection.getBalance(new Solana.PublicKey(walletAddress));
+    console.log("Wallet balance:", balance / Solana.LAMPORTS_PER_SOL, "SOL");
+  } catch (error) {
+    console.error("Could not connect to wallet:", error);
+  }
+}
+
+// Initialize Web3Modal on page load
+window.addEventListener('load', async () => {
+  init();
+
+  document.getElementById('connect-wallet').addEventListener('click', async () => {
+    await connectWallet();
+  });
+});
