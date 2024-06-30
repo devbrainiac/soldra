@@ -1,8 +1,16 @@
-// app.js
-// Initialize Web3Modal
+"use strict";
+
+/**
+ * Example JavaScript code that interacts with the page and Web3 wallets
+ */
+
+ // Unpkg imports
 const Web3Modal = window.Web3Modal.default;
 const WalletConnectProvider = window.WalletConnectProvider.default;
+const Fortmatic = window.Fortmatic;
+const evmChains = window.evmChains;
 const Solana = window.SolanaWeb3;
+
 
 let web3Modal;
 let provider;
