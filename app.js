@@ -1,4 +1,4 @@
-const clientId = "YOUR_CLIENT_ID"; // Replace with your Web3Auth client ID
+const clientId = "BICMdAh78BSk8KjltqG1Q-sGI5gzvKAnsgffBPidRuu6bIe03o3fr2ZhzicwfYT3S8GY1Y43pvR2NKKUMs6Z5Aw"; // Replace with your Web3Auth client ID
 
 let web3auth = null;
 let provider = null;
