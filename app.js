@@ -1,6 +1,4 @@
-"use strict";
-
- const { createWeb3Modal, defaultSolanaConfig } = window.Web3Modal.solana;
+const { createWeb3Modal, defaultSolanaConfig } = window.Web3Modal.solana;
     const solanaWeb3 = window.solanaWeb3;
 
     // 0. Setup chains
