@@ -1,6 +1,6 @@
-// Import WalletConnect modules
 import { Core } from './node_modules/@walletconnect/core/dist/index.es.js';
 import { Web3Wallet } from './node_modules/@walletconnect/web3wallet/dist/index.es.js';
+
 
 // Create Core instance
 const core = new Core({
